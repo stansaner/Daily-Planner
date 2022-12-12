@@ -34,17 +34,19 @@
       <!-- I will add a row like this for each hour between 9:00 and 17:00
            programmatically. Sizing the text area to take 3 lines of up 
            to 80 characters long which should be plenty for a calendar
-           to-do items.
-           For the save button I added font-awesom icon for a "save"
+           to-do items. It is a text area, so it can take more and it has
+           a scrollbar when the text exceeds 3 rows.
+           For the save button I added font-awesome icon for a "save"
            symbol (a floppy disk) sized normally and the button 
            is 80 pixels wide.
            The row background colour is one of the past, present or 
            future hour slot checked relative to current hour
+      
 
       <div class="row">
         <div class="hour">9 AM</div>
         <textarea id="textarea" rows="3" cols="80" class="past"></textarea>
-        <button class="saveBtn"><i class="fas fa-save"></i>
+        <button class="saveBtn" data-hour="${hour}"><i class="fas fa-save"></i>
         </button>
       </div>
       -->

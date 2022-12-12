@@ -9,7 +9,7 @@ var saveBtn = $('.saveBtn');
 
 // We need to know present hour to colour the background
 // of hour slots for the past, present an future ones.
-// var presentHour = 15;  <-- hard set value for troubleshooting purposes
+// var presentHour = 15;  // <-- hard set value for debugging purposes
 
 var presentHour = moment().format("HH");
 console.log("presentHour is: " + presentHour);
@@ -71,7 +71,7 @@ function displayHourSlots() {
     $.each(timeSlots, function(key, value){
         var hour = key;
         console.log("key is: " + key);
-        var todos = value;
+        // var todos = value;
 
         if (presentHour > hour) {
             timeClass = 'past';
@@ -86,12 +86,32 @@ function displayHourSlots() {
         output.append(`
             <div class="row">
                 <div class="hour">${hour}</div>
-                <textarea id="textarea" rows="3" cols="80" class=${timeClass}></textarea>
-                <button class="saveBtn" data-hourindex="${hour}"><i class="fas fa-save"></i>
+                <textarea id="textarea" rows="3" cols="80" class=${timeClass}>${value}</textarea>
+                <button class="saveBtn" data-hourIndex="${hour}"><i class="fas fa-save"></i>
                 </button>
             </div>
         `);
+
+        // ${this}.val();
      })
 }
+
+var todos = $('#textarea');
+
+// Add event listener on the button
+
+saveBtn.on('click',function(){
+
+    todos = $(this).siblings('#textarea').val();
+    hour = $(this).siblings('.hour').text(); 
+    timeSlotss[hour] = todos; 
+    //Save the hour slot to localStorage
+    saveHourSlots();
+
+    //success.show(1500);
+    //success.hide(1000);
+ })
+
+// var hour = btn.data('hourIndex');
 
 displayHourSlots(); 

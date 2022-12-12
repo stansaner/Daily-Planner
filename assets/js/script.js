@@ -56,7 +56,7 @@ function getHourSlots() {
     return JSON.parse(localStorage.getItem('dayPlans')) || {};
 }
 
-function saveHourSlots(arr) {
+function saveHourSlots(obj) {
     localStorage.setItem('dayPlans', JSON.stringify(timeSlots));
 }
 
@@ -93,5 +93,18 @@ function displayHourSlots() {
         `);
      })
 }
+
+saveBtn.on('click',function(){
+
+    var btn =$(this);
+    var buttonIndex = btn.data('hourIndex');
+
+    todos = $(this).siblings('#textarea').val();
+    hour = $(this).siblings('.hour').text(); 
+    // timeSlots[hour] = todos; 
+
+    //Save the event to localStorage
+    saveHourSlots(timeSlots);
+ })
 
 displayHourSlots(); 

@@ -31,6 +31,10 @@ textarea {
 }
 
 .row {
+  /* We want to align hour, text area and the button on 1 line
+     Using flex box to achieve that with flex-direction row */
+  display: flex;
+  flex-direction: row;
   white-space: pre-wrap;
   height: 80px;
   border-top: 1px solid white;
@@ -44,17 +48,17 @@ textarea {
 
 .past {
   background-color: #d3d3d3;
-  color: white;
+  color: black;
 }
 
 .present {
   background-color: #ff6961;
-  color: white;
+  color: black;
 }
 
 .future {
   background-color: #77dd77;
-  color: white;
+  color: black;
 }
 
 .saveBtn {
@@ -62,6 +66,7 @@ textarea {
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
   background-color: #06aed5;
+  width: 80px;
   color: white;
 }
 

@@ -15,9 +15,9 @@ var allRows = $('.container');
 // Must ensure the presentHour is treated as a number, hence
 // using the Number() function. Without it the code is buggy 
 // as it treats these as strings/characters.
-var presentHour = Number(15);  // <-- hard set value for debugging purposes
+// var presentHour = Number(15);  // <-- hard set value for debugging purposes
 
-// var presentHour = Number(moment().format("HH"));
+var presentHour = Number(moment().format("HH"));
 console.log("presentHour is: " + presentHour);
 
 // console.log('Current Day is: ' + currentDay);

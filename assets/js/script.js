@@ -2,10 +2,13 @@ var currentDay = moment().format("dddd, MMMM Do");
 
 var output = $(".container");
 
-// for the event listener on the buttons
+// For the event listener on the buttons I take advantage
+// of the event delegation (bubbling).
+// Place the event listener for click on the container of
+// all hour slots.
 // Using custom data to distinguish which button was pressed
 // so we save the text to the appropriate object property
-var saveBtn = $('.saveBtn');
+var allRows = $('.container');
 
 // We need to know present hour to colour the background
 // of hour slots for the past, present an future ones.
@@ -62,22 +65,27 @@ function saveHourSlots(obj) {
 
 
 function displayHourSlots() {
-    var itemsArray = getHourSlots();
-
+    // load hour slots from localStorage
+    var timeSlots = getHourSlots();
+    // var itemsArray = getHourSlots();
+    
     // clear the area before displaying data
     output.html('');
     var timeClass ='past';
 
+    // Loop over the hour slots and assign corresponding 
+    // class to style each slot depending on it being
+    // in the past, present of future relative to current time
+
     $.each(timeSlots, function(key, value){
         var hour = key;
         console.log("key is: " + key);
-        // var todos = value;
 
         if (presentHour > hour) {
             timeClass = 'past';
         } else if (presentHour == hour) {
             timeClass = 'present';
-        } else if (presentHour < hour) {  // presentHour < hour
+        } else if (presentHour < hour) {  
             timeClass = 'future';
         }
 
@@ -91,21 +99,21 @@ function displayHourSlots() {
                 </button>
             </div>
         `);
-
-        // ${this}.val();
      })
 }
 
-saveBtn.on('click',function(){
+allRows.on('click', 'button', function(){
 
     var btn =$(this);
     var buttonIndex = btn.data('hourIndex');
 
-    todos = $(this).siblings('#textarea').val();
-    hour = $(this).siblings('.hour').text(); 
-    // timeSlots[hour] = todos; 
+    console.log('clicked');
 
-    //Save the event to localStorage
+    toDos = $(this).siblings('#textarea').val();
+    hour = $(this).siblings('.hour').text(); 
+    timeSlots[hour] = toDos; 
+
+    //Save the hour slots to localStorage
     saveHourSlots(timeSlots);
  })
 

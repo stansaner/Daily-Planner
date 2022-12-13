@@ -12,9 +12,12 @@ var allRows = $('.container');
 
 // We need to know present hour to colour the background
 // of hour slots for the past, present an future ones.
-// var presentHour = 15;  // <-- hard set value for debugging purposes
+// Must ensure the presentHour is treated as a number, hence
+// using the Number() function. Without it the code is buggy 
+// as it treats these as strings/characters.
+var presentHour = Number(15);  // <-- hard set value for debugging purposes
 
-var presentHour = moment().format("HH");
+// var presentHour = Number(moment().format("HH"));
 console.log("presentHour is: " + presentHour);
 
 // console.log('Current Day is: ' + currentDay);
@@ -78,18 +81,18 @@ function displayHourSlots() {
     // in the past, present of future relative to current time
 
     $.each(timeSlots, function(key, value){
-        var hour = key;
-        console.log("key is: " + key);
+        var hour = Number(key);
 
         if (presentHour > hour) {
             timeClass = 'past';
-        } else if (presentHour == hour) {
+        } else if (presentHour === hour) {
             timeClass = 'present';
-        } else if (presentHour < hour) {  
+        } else // if (presentHour < hour) 
+        {  
             timeClass = 'future';
         }
 
-        console.log("timeClass is: " + timeClass);
+        // console.log("timeClass is: " + timeClass);
         
         output.append(`
             <div class="row">

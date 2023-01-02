@@ -8,7 +8,8 @@ var output = $(".container");
 // all hour slots.
 // Using custom data to distinguish which button was pressed
 // so we save the text to the appropriate object property
-var allRows = $('.container');
+// We can reuse "output" for that purpose, commenting out allRows
+// var allRows = $('.container');
 
 // We need to know present hour to colour the background
 // of hour slots for the past, present an future ones.
@@ -75,6 +76,10 @@ function displayHourSlots() {
     // clear the area before displaying data
     output.html('');
     var timeClass ='past';
+
+    var timeSlots = {
+        9: ''
+    }
 
     // Loop over the hour slots and assign corresponding 
     // class to style each slot depending on it being
